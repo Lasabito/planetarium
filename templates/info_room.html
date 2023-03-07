@@ -1,0 +1,195 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" href="{% static 'styles/info.css' %}">
+    <div class="content">
+        <div class="info">
+            <h1>Прожекция №{{ data.number }}</h1>
+            <h1 class="heading">"{{ data.heading }}"</h1>
+            <div class="more-info">
+                <div class="not-people-list">
+                    <h2 class="date">Дата: {{ data.date|date:"d/m/Y" }}</h2>
+                    <h2 class="time">Час: {{ data.time|time:"G:i" }}</h2>
+                    <h2 class="duration">Времетраене: {{ data.duration }} минути</h2>
+                    <h2 class="change">Редактирай/Изтрий:
+                        <a class="pen" href="{% url 'update' pk=data.pk %}"> <i
+                                class="fa-solid fa-pen-to-square"></i></a>
+                        <a class="delete" href="{% url 'delete' pk=data.pk %}"><i class="fa-solid fa-trash"></i></a>
+                    </h2>
+                    <h2 class="name-list"><span id="list-people-show-hide-text">Виж</span> списъка с хора:
+                        <button id="people-list-btn" onclick="showHideLst()"><i
+                                class="fa-solid fa-clipboard-list"></i></button>
+                    </h2>
+                </div>
+                <div id="people-list">
+                    {% for seat in info_seats %}
+                        <div class="person-full-info">
+                            <div class="name">
+                                <a id="person-copy-button" onclick="clickName({{ seat }})">{{ seat.0 }}</a>
+                            </div>
+                            <div class="text">
+                                {{ seat.1 }}
+                            </div>
+                            <div class="taken-seats">
+                                {% for x in seat.2 %}
+                                    <div class="seat">
+                                        {{ x }}
+                                    </div>
+
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                    {% empty %}
+                        <h4 style="color: #404E5C">Все още няма резервирано/запазено място.</h4>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+        <form class="mark" method="get">
+            <div class="header">
+                <h1>
+                    Промяна на места
+                </h1>
+            </div>
+            <div class="input-box number name">
+                <label class="name" for="name">Две имена: </label>
+                <input class="name" type="text" name="name" id="name-input-form" placeholder="(незадълж. при освобождаване)">
+            </div>
+            <div class="inputs">
+                <div class="input-box number ">
+                    <label class="first" for="row">Ред: </label>
+                    <input class="first" type="text" name="row" id="row" minlength="1" maxlength="1" required>
+                </div>
+                <div class="input-box number">
+                    <label for="col">Място №: </label>
+                    <input type="text" name="col" id="col" minlength="2" maxlength="2" required>
+                </div>
+            </div>
+            <div class="checkers">
+                <div class="input-box green">
+                    <input type="radio" name="mark" value="free" required>
+                    <label for="mark">Освободи</label>
+                </div>
+                <div class="input-box yellow">
+                    <input type="radio" name="mark" value="saved">
+                    <label for="mark">Резервирай</label>
+                </div>
+                <div class="input-box red">
+                    <input type="radio" name="mark" value="book">
+                    <label for="mark">Заеми</label>
+                </div>
+            </div>
+
+            {% csrf_token %}
+            <button class="btn">Потвърди</button>
+        </form>
+        {% if error %}
+            <div class="after-error">Грешка: {{ error }}</div>
+        {% endif %}
+        <div class="hall-seats">
+            <div class="seats" id="seats-id">
+                <div class="entry">
+                    <h2>Вход</h2>
+                </div>
+                {% for row in hall %}
+                    <div class="row">
+                        {% for seat in row %}
+                                {% if seat == 0 %}
+                                    <a href="#seats-id" onclick="clickSeat({{ forloop.parentloop.counter0 }}, {{ forloop.counter0 }})"  class="box green">{{ num }}</a>
+                                {% elif seat == 1 %}
+                                    <a href="#seats-id" onclick="clickSeat({{ forloop.parentloop.counter0 }}, {{ forloop.counter0 }})"  class="box red">{{ num }}</a>
+                                {% else %}
+                                    <a href="#seats-id" onclick="clickSeat({{ forloop.parentloop.counter0 }}, {{ forloop.counter0 }})"  class="box yellow">{{ num }}</a>
+                                {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="nums">
+                {% for row_num in seat_nums %}
+
+                    <div class="num-row">
+                        {% for num in row_num %}
+                            <a href="#seats-id" onclick="clickSeat({{ forloop.parentloop.counter0 }}, {{ forloop.counter0 }})" class="number">
+                                {{ num }}
+                            </a>
+                        {% endfor %}
+                    </div>
+
+                {% endfor %}
+            </div>
+            <div class="rows1">
+                <h3>Ред A</h3>
+                <h3>Ред B</h3>
+                <h3>Ред C</h3>
+                <h3>Ред D</h3>
+                <h3>Ред E</h3>
+            </div>
+            <div class="rows2">
+                <h3>Ред A</h3>
+                <h3>Ред B</h3>
+                <h3>Ред C</h3>
+                <h3>Ред D</h3>
+                <h3>Ред E</h3>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let show = true;
+        let peopleList = document.getElementById('people-list')
+        let peopleListButton = document.getElementById('people-list-btn')
+        let text = document.getElementById('list-people-show-hide-text')
+
+        function showHideLst() {
+            if (show === false) {
+                peopleList.style.display = 'none'
+                peopleListButton.innerHTML = '<i class="fa-solid fa-clipboard-list"></i>'
+                peopleListButton.style.color = '#404E5C'
+                text.textContent = 'Виж'
+                show = true
+            } else {
+                peopleList.style.display = 'flex'
+                peopleListButton.innerHTML = '<i class="fa-solid fa-circle-xmark"></i>'
+                peopleListButton.style.color = 'red'
+                text.textContent = 'Скрий'
+                show = false
+            }
+        }
+
+        function clickName(name){
+            console.log(name)
+            let nameInput = document.getElementById("name-input-form")
+            nameInput.value = name[0]
+        }
+
+        function clickSeat(row, col){
+            if (row === 0){
+                row = 'A'
+            }
+            else if(row === 1){
+                row = 'B'
+            }
+            else if(row === 2){
+                row = 'C'
+            }
+            else if(row === 3){
+                row = 'D'
+            }
+            else if(row === 4){
+                row = 'E'
+            }
+            let rowInput = document.getElementById('row')
+            let colInput = document.getElementById('col')
+            rowInput.value = row
+            if (col < 9){
+                colInput.value = "0" + (col + 1)
+            }
+            else{
+                colInput.value = (col + 1)
+            }
+        }
+    </script>
+{% endblock %}

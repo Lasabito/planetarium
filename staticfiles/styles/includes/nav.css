@@ -1,0 +1,53 @@
+nav {
+    height: 60px;
+    width: 100%;
+    position: relative;
+}
+
+nav ul{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+    list-style-type: none;
+}
+
+nav ul .home{
+    position: absolute;
+    left: 20px;
+}
+
+nav ul .create{
+    position: absolute;
+    right: 20px;
+}
+
+nav ul .image{
+    display: block;
+    margin: 0 auto;
+}
+
+nav ul li a {
+    font-size: 20px;
+    text-decoration: none;
+    color: #404E5C;
+    border: 2px solid #404E5C;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: .5s;
+}
+
+nav ul li a:hover{
+    background: #ffffff;
+}
+
+nav ul li img{
+    width: 300px;
+    height: auto;
+    margin-top: 90px;
+}
+
+i{
+    margin-right: 3px;
+}

@@ -1,0 +1,22 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" href="{% static 'styles/update.css' %}">
+    <div class="content">
+        <h1>Редактиране на прожекция</h1>
+        <form class="form" method="post">
+            {% for field in form %}
+                <div class="input-box">
+                    {{ field.errors }}
+                    {{ field.label_tag }}
+                    {{ field }}
+                </div>
+            {% endfor %}
+            {% csrf_token %}
+            <button class="btn">Редактирай</button>
+        </form>
+    </div>
+{% endblock %}
+
+
+

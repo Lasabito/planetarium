@@ -1,0 +1,337 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 100px;
+}
+
+
+.info {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+    align-items: center;
+    color: #404E5C;
+}
+
+.more-info {
+    margin-left: 20px;
+}
+
+.info .change .pen {
+    color: #404E5C;
+    transition: .3s;
+}
+
+.info .change .pen:hover {
+    color: #748398;
+}
+
+.info .change .delete {
+    color: #bb0505;
+    transition: .5s;
+}
+
+.info .change .delete:hover {
+    color: #ff0808;
+}
+
+.info .name-list .list {
+    color: #404E5C;
+    transition: .3s;
+}
+
+.info .name-list .list:hover {
+    color: #6c798d;
+}
+
+.info h1 {
+
+    margin-bottom: 20px;
+    font-size: 45px;
+}
+
+.info .heading {
+    font-size: 35px;
+}
+
+.mark {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+}
+
+.mark .inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.mark .header {
+    color: #404E5C;
+    border-bottom: 2px dashed #404E5C;
+}
+
+.mark .name {
+    margin: 10px 0 5px;
+}
+
+.mark .name input {
+    width: 200px;
+}
+
+.mark .checkers {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-left: 0;
+}
+
+.mark label {
+    font-size: 18px;
+    color: #404E5C;
+}
+
+.after-error {
+    font-size: 20px;
+    color: #404E5C;
+    font-weight: 600;
+    border-bottom: 3px solid red;
+}
+
+.number label {
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.number input.first {
+    margin-left: 55px;
+}
+
+.number input {
+    background: transparent;
+    border: 2px solid #404E5C;
+    border-radius: 5px;
+    width: 15px;
+    padding: 4px;
+}
+
+.number input:not(.name), select, textarea {
+    color: #404E5C;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.checkers label {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.checkers input {
+    appearance: none;
+    -webkit-appearance: none;
+    height: 18px;
+    width: 18px;
+    border-radius: 5px;
+    background: #404E5C;
+    cursor: pointer;
+}
+
+.checkers .input-box {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.checkers .green input {
+    background: #6ad76a;
+    border: 1px solid #404E5C;
+}
+
+.checkers .yellow input {
+    background: yellow;
+    border: 1px solid #404E5C;
+}
+
+.checkers .red input {
+    background: #f30101;
+    border: 1px solid #404E5C;
+}
+
+.checkers .input-box input:checked ~ label {
+    border-bottom: 2px solid #404E5C;
+}
+
+.btn {
+    padding: 5px 10px;
+    margin: 15px 0;
+    border-radius: 10px;
+    outline: none;
+    border: 2px solid #404E5C;
+    color: #404E5C;
+    font-weight: bold;
+    font-size: 16px;
+    background: transparent;
+    transition: .5s;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #f1f1f1;
+}
+
+.hall-seats {
+    position: relative;
+    margin-left: 30px;
+}
+
+.seats {
+    margin-top: 30px;
+    width: 90%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.seats .entry {
+    font-weight: bold;
+    font-size: 25px;
+    color: #404E5C;
+}
+
+.seats .row {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.seats .box{
+    height: 50px;
+    width: 50px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.seats .green{
+    background: #6ad76a;
+}
+
+.seats .red{
+    background: red;
+}
+
+.seats .yellow {
+    background: yellow;
+}
+
+.nums {
+    position: absolute;
+    top: 124px;
+    left: 20px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    align-items: center;
+}
+
+
+.nums .num-row {
+    display: flex;
+    flex-direction: row;
+    gap: 42px;
+}
+
+.nums .num-row a{
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+}
+
+.rows1 {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    gap: 48px;
+    top: 120px;
+    left: -70px;
+    font-size: 20px;
+    color: #404E5C;
+}
+
+.rows2 {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    gap: 48px;
+    top: 120px;
+    right: -40px;
+    font-size: 20px;
+    color: #404E5C;
+}
+
+.more-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.more-info #people-list-btn{
+    background: none;
+    border: none;
+    font-size: 25px;
+    color: #404E5C;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.more-info #people-list-btn:hover {
+    color: #748398;
+}
+
+.more-info #people-list {
+    display: none;
+    flex-direction: column;
+    padding: 10px 20px;
+    margin-top: 20px;
+    background: #B6DCFE;
+    border: 1px solid #404E5C;
+    border-radius: 10px;
+    color: #404E5C;
+    gap: 5px;
+}
+
+.more-info #people-list a{
+    text-decoration: none;
+    color: #404E5C;
+    cursor: pointer;
+}
+
+.more-info #people-list a:hover{
+    color: #5b6f80;
+}
+
+.more-info #people-list a:active{
+    color: orange;
+}
+
+.more-info #people-list .person-full-info{
+    display: flex;
+    gap: 5px;
+}
+
+.more-info #people-list .person-full-info .name,
+.more-info #people-list .person-full-info .taken-seats
+{
+    font-weight: bold;
+}
+
+.more-info #people-list .person-full-info .taken-seats{
+    display: flex;
+    flex-direction: column;
+}

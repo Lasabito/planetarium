@@ -1,0 +1,10 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/includes/nav.css' %}">
+<script src="https://kit.fontawesome.com/73cf3f5f3e.js" crossorigin="anonymous"></script>
+<nav>
+    <ul>
+        <li class="home"><a href="{% url 'home' %}"><i class="fa-solid fa-house"></i>Начало</a></li>
+        <li class="create"><a href="{% url 'create_new' %}"><i class="fa-solid fa-circle-plus"></i>Създай прожекция</a></li>
+        <li class="image"><img src="{% static 'images/planetum_logo.png' %}" alt="planetarium_logo"></li>
+    </ul>
+</nav>
